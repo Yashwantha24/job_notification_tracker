@@ -1,17 +1,21 @@
 import React from 'react';
 import MainLayout from '../components/layout/MainLayout';
 import NavBar from '../components/layout/NavBar';
+import EmptyState from '../components/ui/EmptyState';
+import { Mail } from 'lucide-react';
 
 const Digest = () => {
     return (
         <MainLayout
             title="Daily Digest"
-            description="This section will be built in the next step."
+            description="Your curated morning briefing."
             header={<NavBar />}
         >
-            <div className="w-full h-96 border-2 border-dashed border-primary-text/10 rounded-lg flex items-center justify-center text-primary-text/40 font-mono text-sm">
-                Digest Content Placeholder
-            </div>
+            <EmptyState
+                title="No new digests."
+                description="Your daily job summary will arrive here at 9:00 AM."
+                icon={Mail}
+            />
         </MainLayout>
     );
 };
