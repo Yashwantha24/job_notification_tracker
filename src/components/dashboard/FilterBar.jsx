@@ -1,7 +1,6 @@
 import React from 'react';
-import Input from '../ui/Input';
 import Card from '../ui/Card';
-import { Search, Filter, Target } from 'lucide-react';
+import { Search, Target } from 'lucide-react';
 
 const FilterBar = ({ filters, onFilterChange }) => {
     const handleChange = (e) => {
@@ -69,6 +68,19 @@ const FilterBar = ({ filters, onFilterChange }) => {
                         <option value="0-1 Years">0-1 Years</option>
                         <option value="1-3 Years">1-3 Years</option>
                         <option value="3-5 Years">3-5 Years</option>
+                    </select>
+
+                    <select
+                        name="status"
+                        value={filters.status}
+                        onChange={handleChange}
+                        className="px-3 py-2 bg-off-white border border-primary-text/20 rounded-md text-sm text-primary-text/80 focus:outline-none focus:border-accent-red cursor-pointer"
+                    >
+                        <option value="">All Statuses</option>
+                        <option value="Not Applied">Not Applied</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Selected">Selected</option>
+                        <option value="Rejected">Rejected</option>
                     </select>
 
                     <label className="flex items-center space-x-2 px-3 py-2 bg-off-white border border-primary-text/20 rounded-md cursor-pointer hover:border-accent-red transition-colors">

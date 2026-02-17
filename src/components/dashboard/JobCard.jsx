@@ -1,13 +1,31 @@
 import React from 'react';
 import Card from '../ui/Card';
-import Badge from '../ui/Badge';
 import Button from '../ui/Button';
-import { MapPin, Briefcase, Clock, Bookmark, ExternalLink, Eye, Target } from 'lucide-react';
+import { MapPin, Briefcase, Clock, Bookmark, ExternalLink, Eye, Target, CheckCircle, XCircle, Clock as ClockIcon, Circle } from 'lucide-react';
 
-const JobCard = ({ job, onSave, isSaved, onView, matchScore }) => {
+const JobCard = ({ job, onSave, isSaved, onView, matchScore, status, onStatusChange }) => {
+
+    const getStatusColor = (currentStatus) => {
+        switch (currentStatus) {
+            case 'Applied': return 'text-blue-600 bg-blue-50 border-blue-200';
+            case 'Rejected': return 'text-red-600 bg-red-50 border-red-200';
+            case 'Selected': return 'text-green-600 bg-green-50 border-green-200';
+            default: return 'text-primary-text/60 bg-primary-text/5 border-primary-text/10';
+        }
+    };
+
+    const getStatusIcon = (currentStatus) => {
+        switch (currentStatus) {
+            case 'Applied': return <ClockIcon size={12} />;
+            case 'Rejected': return <XCircle size={12} />;
+            case 'Selected': return <CheckCircle size={12} />;
+            default: return <Circle size={12} />;
+        }
+    };
+
     return (
-        <Card className="h-full flex flex-col hover:border-accent-red/30 transition-colors duration-300 relative group">
-            {/* Match Score Badge - Positioned absolutely or integrated */}
+        <Card className={`h-full flex flex-col hover:border-accent-red/30 transition-all duration-300 relative group ${status === 'Rejected' ? 'opacity-75 grayscale-[0.5] hover:grayscale-0' : ''}`}>
+            {/* Match Score Badge */}
             {matchScore && (
                 <div className={`absolute top-3 right-3 px-2 py-0.5 rounded text-xs font-bold border flex items-center gap-1 ${matchScore.colorClass}`}>
                     <Target size={12} />
@@ -33,9 +51,24 @@ const JobCard = ({ job, onSave, isSaved, onView, matchScore }) => {
                     <Briefcase size={14} className="mr-1.5" />
                     {job.experience} • {job.salaryRange}
                 </div>
-                <div className="flex items-center text-xs text-primary-text/60 font-sans">
-                    <Clock size={14} className="mr-1.5" />
-                    {job.source} • {job.postedDaysAgo === 0 ? 'Today' : `${job.postedDaysAgo}d ago`}
+
+                {/* Status Selector */}
+                <div className="pt-2">
+                    <div className="relative inline-block w-full">
+                        <select
+                            value={status || 'Not Applied'}
+                            onChange={(e) => onStatusChange(job.id, e.target.value)}
+                            className={`w-full appearance-none px-3 py-1.5 text-xs font-semibold border rounded cursor-pointer focus:outline-none focus:ring-1 focus:ring-accent-red transition-colors ${getStatusColor(status || 'Not Applied')}`}
+                        >
+                            <option value="Not Applied">Not Applied</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Selected">Selected</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                        <div className={`absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none ${getStatusColor(status || 'Not Applied').split(' ')[0]}`}>
+                            {getStatusIcon(status || 'Not Applied')}
+                        </div>
+                    </div>
                 </div>
             </div>
 
