@@ -1,5 +1,6 @@
 # Job Notification Tracker & KodNest Premium Build System
 🚀 Live Project Link (Vercel):https://jobnotificationtracker-ten.vercel.app/
+
 This repository contains the **Job Notification Tracker** application, built on top of the **KodNest Premium Build System**—a calm, intentional design foundation for premium B2C SaaS applications.
 
 ## Project Overview
