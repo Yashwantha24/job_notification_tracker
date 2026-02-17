@@ -2,19 +2,26 @@ import React from 'react';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
-import { MapPin, Briefcase, Clock, Bookmark, ExternalLink, Eye } from 'lucide-react';
+import { MapPin, Briefcase, Clock, Bookmark, ExternalLink, Eye, Target } from 'lucide-react';
 
-const JobCard = ({ job, onSave, isSaved, onView }) => {
+const JobCard = ({ job, onSave, isSaved, onView, matchScore }) => {
     return (
-        <Card className="h-full flex flex-col hover:border-accent-red/30 transition-colors duration-300">
-            <div className="flex justify-between items-start mb-3">
+        <Card className="h-full flex flex-col hover:border-accent-red/30 transition-colors duration-300 relative group">
+            {/* Match Score Badge - Positioned absolutely or integrated */}
+            {matchScore && (
+                <div className={`absolute top-3 right-3 px-2 py-0.5 rounded text-xs font-bold border flex items-center gap-1 ${matchScore.colorClass}`}>
+                    <Target size={12} />
+                    {matchScore.score}%
+                </div>
+            )}
+
+            <div className="flex justify-between items-start mb-3 pr-16">
                 <div>
                     <h3 className="text-lg font-serif font-bold text-primary-text leading-tight mb-1 line-clamp-2">
                         {job.title}
                     </h3>
                     <p className="text-sm font-medium text-primary-text/70">{job.company}</p>
                 </div>
-                <Badge status={job.source === 'LinkedIn' ? 'Info' : 'Neutral'} label={job.source} />
             </div>
 
             <div className="space-y-2 mb-6 flex-grow">
@@ -28,7 +35,7 @@ const JobCard = ({ job, onSave, isSaved, onView }) => {
                 </div>
                 <div className="flex items-center text-xs text-primary-text/60 font-sans">
                     <Clock size={14} className="mr-1.5" />
-                    Posted {job.postedDaysAgo === 0 ? 'Today' : `${job.postedDaysAgo} days ago`}
+                    {job.source} • {job.postedDaysAgo === 0 ? 'Today' : `${job.postedDaysAgo}d ago`}
                 </div>
             </div>
 
