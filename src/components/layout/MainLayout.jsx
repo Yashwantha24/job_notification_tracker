@@ -3,10 +3,10 @@ import TopBar from './TopBar';
 import ContextHeader from './ContextHeader';
 import ProofFooter from './ProofFooter';
 
-const MainLayout = ({ children, title = "Dashboard", description = "Welcome to the premium build system." }) => {
+const MainLayout = ({ children, title = "Dashboard", description = "Welcome to the premium build system.", header }) => {
     return (
         <div className="min-h-screen bg-off-white flex flex-col font-sans text-primary-text pb-16">
-            <TopBar />
+            {header || <TopBar />}
             <ContextHeader title={title} description={description} />
 
             <main className="flex-grow w-full max-w-7xl mx-auto px-10 py-10 flex gap-10">

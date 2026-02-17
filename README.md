@@ -1,32 +1,39 @@
-# KodNest Premium Build System
+# Job Notification Tracker & KodNest Premium Build System
 
-A **calm, intentional, and coherent** design system foundation for premium B2C SaaS applications. 
-This repository contains the core UI architecture, strictly enforcing a high-trust aesthetic with zero visual drift.
+This repository contains the **Job Notification Tracker** application, built on top of the **KodNest Premium Build System**—a calm, intentional design foundation for premium B2C SaaS applications.
 
-## Design Philosophy
+## Project Overview
 
--   **Calm & Confident**: Minimalist interface that respects user attention.
--   **Intentional**: Every pixel exists for a reason; no decorative noise.
--   **Coherent**: A "One Mind" design language with mathematically consistent spacing and typography.
+### 1. Design System Foundation
+-   **Philosophy**: Calm, Intentional, Coherent, Confident.
 -   **Strict Tokens**: 
-    -   **4-Color Limit**: Off-white (#F7F6F3), Primary Text (#111111), Deep Red (#8B0000), and Text-Derived Muted States.
-    -   **Spacing Scale**: Strict 8px grid (8, 16, 24, 40, 64px).
+    -   **4-Color Palette**: Off-white (#F7F6F3), Primary Text (#111111), Deep Red (#8B0000).
+    -   **Spacing**: 8px grid (8, 16, 24, 40, 64px) strictly enforced.
+-   **Typography**: Merriweather (Serif) & Inter (Sans).
+
+### 2. Application Skeleton (Job Notification Tracker)
+The core routing and navigation structure is implemented:
+-   **Dashboard** (`/dashboard`): Main overview.
+-   **Saved Jobs** (`/saved`): Tracked opportunities.
+-   **Daily Digest** (`/digest`): Notifications summary.
+-   **Settings** (`/settings`): User preferences.
+-   **Proof of Work** (`/proof`): Implementation verification.
 
 ## Tech Stack
 
 -   **Frontend**: React 19 + Vite 6
+-   **Routing**: React Router DOM v7
 -   **Styling**: Tailwind CSS v4 (Custom Config)
--   **Typography**: Merriweather (Serif) & Inter (Sans)
 
 ## Project Structure
 
 ```bash
 src/
 ├── components/
-│   ├── layout/       # Global structural components (TopBar, Footer, Layout)
-│   └── ui/           # Core atomic components (Button, Input, Card, Badge)
-├── pages/            # Feature pages (Design System Showcase)
-└── index.css         # Tailwind v4 configuration & Global Styles
+│   ├── layout/       # NavBar, MainLayout, Footer
+│   └── ui/           # Button, Input, Card, Badge
+├── pages/            # Feature Pages (Dashboard, Saved, etc.)
+└── App.jsx           # Routing Configuration
 ```
 
 ## Getting Started
@@ -40,7 +47,7 @@ src/
     ```bash
     npm run dev
     ```
-    Visit `http://localhost:5173` to view the Design System Showcase.
+    Visit `http://localhost:5173` to access the application.
 
 3.  **Build for Production**
     ```bash
