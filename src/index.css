@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-off-white: #F7F6F3;
+  --color-primary-text: #111111;
+  --color-accent-red: #8B0000;
+  --color-muted-success: #4A7C59;
+  --color-muted-warning: #D97706;
+  --color-muted-error: #EF4444;
+
+  --font-serif: Merriweather, serif;
+  --font-sans: Inter, sans-serif;
+
+  --spacing-18: 4.5rem;
+  --spacing-112: 28rem;
+  --spacing-128: 32rem;
+  --spacing-144: 36rem;
+}
+
+/* Importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+@layer base {
+  body {
+    @apply bg-off-white text-primary-text font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
